@@ -6,4 +6,4 @@ before_install:
   - docker build -t harshwebkorps/docker-app .
 
 script:
-  - docker run harshwebkorps/docker-app rake test
+  - docker run harshwebkorps/docker-app rails test
