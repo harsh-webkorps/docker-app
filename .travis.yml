@@ -3,7 +3,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t DOCKERAPP .
+  - docker build -t harshwebkorps/docker-app .
 
 script:
-  - docker run DOCKERAPP rake test
+  - docker run harshwebkorps/docker-app rake test
