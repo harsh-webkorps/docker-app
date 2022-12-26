@@ -7,3 +7,9 @@ services:
             - ".:/app"
         ports:
             - "3000:3000"
+        depends_on:
+            - db
+    db:
+        image: postgres
+        volumes:
+            - ./tmp/db:/var/lib/postgresql/data
