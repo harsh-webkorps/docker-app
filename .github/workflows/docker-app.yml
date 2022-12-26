@@ -34,9 +34,11 @@ jobs:
       - name: Set up database
         run: bundle exec rails db:prepare
         env:
-           SOCIAL_NETWORK_DATABASE_PASSWORD: postgres
+          DATABASE_USER: social_network
+          DATABASE_PASSWORD: postgres
       - name: Run tests
         run: bundle exec rails test
         env:
-           RAILS_ENV: test
-           SOCIAL_NETWORK_DATABASE_PASSWORD: postgres  
+          RAILS_ENV: test
+          DATABASE_USER: social_network
+          DATABASE_PASSWORD: postgres 
