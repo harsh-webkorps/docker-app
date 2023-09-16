@@ -18,5 +18,5 @@ spec:
         - name: taskmaster
           image: harshwebkorps/dockerapp_app:v1
           ports:
-            - containerPort: 3000
+            - containerPort: 5000
           imagePullPolicy: Always
