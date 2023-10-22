@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "password1"
+            - name: MYSQL_DATABASE
+              value: "social_network"
+            - name: POSTGRES_USER
+              value: "social_network"
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgres_data
+              mountPath: /var/lib/postgresql/data         # this is your container path from where your data will be stored
+      volumes:
+        - name: postgres_data
+          persistentVolumeClaim:
+            claimName: postgres-pvc    # PVC claim name
