@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: two-tier-app
+  labels:
+    app: two-tier-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: two-tier-app
+  template:
+    metadata:
+      labels:
+        app: two-tier-app
+    spec:
+      containers:
+        - name: two-tier-app-ctr
+          image: harshwebkorps/dockerapp_app:v4
+          env:
+            - name: DATABASE_NAME
+              value: "docker-app"
+            - name: DATABASE_USER
+              value: "social_network"
+            - name: DATABASE_PASSWORD
+              value: "password1"
+            - name: DATABASE_HOST
+              value: "10.106.247.33"
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Always

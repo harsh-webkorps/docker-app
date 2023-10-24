@@ -1,8 +1,7 @@
 version: '2'
 services:
     app:
-        build: .
-        command: bundle exec rails s -p 3000 -b '0.0.0.0'
+        image: harshwebkorps/dockerapp_app:v4
         volumes:
             - ".:/app"
         ports:
@@ -10,6 +9,15 @@ services:
         depends_on:
             - db
     db:
-        image: postgres
+        image: postgres:latest
+        container_name: my_postgres
+        environment:
+            POSTGRES_DB: docker-app
+            POSTGRES_USER: social_network
+            POSTGRES_PASSWORD: password1
+        ports:
+            - "5432:5432"
         volumes:
-            - ./tmp/db:/var/lib/postgresql/data
+            - postgres_data:/var/lib/postgresql/data
+volumes:
+    postgres_data:
